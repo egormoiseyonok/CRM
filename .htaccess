@@ -1,0 +1,31 @@
+# Apache .htaccess для поддержки фронтенда и API
+
+# Включить mod_rewrite
+RewriteEngine On
+
+# Если запрос идет к файлу или папке, которая существует, отдать её
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Если запрос к API, оставить как есть (API обрабатывается PHP)
+RewriteRule ^api/ - [L]
+
+# Если запрос к frontend, отдать файлы из frontend/
+RewriteCond %{REQUEST_URI} ^/frontend/
+RewriteRule ^frontend/(.*)$ frontend/$1 [L]
+
+# Для корневых запросов - редирект на frontend если файл не существует
+# Или можно оставить старую логику PHP
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# CORS headers для API (если не настроено в PHP)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+    Header set Access-Control-Allow-Credentials "true"
+</IfModule>
+

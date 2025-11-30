@@ -1,0 +1,35 @@
+# Конфигурация с паролями
+config.php
+
+# Временные файлы
+*.log
+*.tmp
+*.cache
+
+# IDE файлы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Бэкапы
+*.sql
+*.dump
+backups/
+
+# Composer
+/vendor/
+composer.lock
+
+# Node modules (если будет использоваться)
+node_modules/
+package-lock.json
+
+
+

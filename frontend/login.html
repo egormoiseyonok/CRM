@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Simple CRM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 440px;
+            overflow: hidden;
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .login-header p {
+            opacity: 0.9;
+            font-size: 15px;
+        }
+        
+        .login-body {
+            padding: 40px 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+        }
+        
+        .alert {
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            background: #fee2e2;
+            color: #991b1b;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .register-link {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .backend-warning {
+            margin-top: 20px;
+            padding: 16px;
+            background: #fef3c7;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #92400e;
+            border-left: 4px solid #f59e0b;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">CRM</div>
+            <h1>Simple CRM</h1>
+            <p>Система управления клиентами</p>
+        </div>
+        
+        <div class="login-body">
+            <div id="errorMessage"></div>
+            
+            <form id="loginForm" method="POST">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="email"
+                        class="form-control" 
+                        placeholder="your@email.com"
+                        required 
+                        autofocus
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Пароль</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password"
+                        class="form-control" 
+                        placeholder="Введите пароль"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    Войти в систему
+                </button>
+            </form>
+            
+            <div class="register-link">
+                Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+            </div>
+            
+            <div class="backend-warning" id="backendWarning" style="display: none;">
+                <strong>⚠️ Внимание:</strong> Для входа в систему необходимо запустить приложение локально с PHP сервером.
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        // Проверка доступности бэкенда
+        if (!Config.isBackendAvailable()) {
+            document.getElementById('backendWarning').style.display = 'block';
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Для входа в систему необходимо запустить приложение локально.\n\nУстановите XAMPP и откройте http://localhost/CRM/login.php');
+            });
+        } else {
+            // Обычная форма логина через PHP
+            document.getElementById('loginForm').action = Config.getApiUrl() + '/login.php';
+        }
+    </script>
+</body>
+</html>
+
