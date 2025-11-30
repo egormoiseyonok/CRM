@@ -113,7 +113,7 @@ ob_start();
 <div class="page-header">
     <div class="page-title">
         <h1>
-            <span class="page-title-icon">👤</span>
+            <span class="page-title-icon">◉</span>
             Профиль пользователя
         </h1>
     </div>
@@ -271,16 +271,16 @@ ob_start();
                                         <div class="timeline-title">
                                             <?php
                                             $icons = [
-                                                'login' => '🔓',
-                                                'logout' => '🔒',
-                                                'profile_update' => '✏️',
-                                                'password_change' => '🔑',
-                                                'note' => '📝',
-                                                'call' => '📞',
-                                                'email' => '📧',
-                                                'meeting' => '🤝',
+                                                'login' => '',
+                                                'logout' => '',
+                                                'profile_update' => '',
+                                                'password_change' => '',
+                                                'note' => '',
+                                                'call' => '',
+                                                'email' => '',
+                                                'meeting' => '',
                                             ];
-                                            $icon = $icons[$activity['type']] ?? '📌';
+                                            $icon = $icons[$activity['type']] ?? '';
                                             ?>
                                             <?= $icon ?> <?= e($activity['subject']) ?>
                                         </div>
@@ -292,7 +292,7 @@ ob_start();
                     </div>
                 <?php else: ?>
                     <div class="empty-state">
-                        <div class="empty-state-icon">📝</div>
+                        <div class="empty-state-icon"></div>
                         <p>Нет записей об активности</p>
                     </div>
                 <?php endif; ?>

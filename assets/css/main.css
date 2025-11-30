@@ -1,24 +1,24 @@
 /* main.css - Основные стили приложения */
 
 :root {
-    --primary: #1a1a1a;
-    --primary-dark: #000000;
-    --secondary: #6b7280;
-    --accent: #4b5563;
-    --success: #22c55e;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-    --info: #3b82f6;
-    --light: #f9fafb;
-    --dark: #000000;
-    --border: #e5e7eb;
-    --bg: #ffffff;
-    --bg-secondary: #f9fafb;
-    --text: #000000;
-    --text-secondary: #6b7280;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --radius: 6px;
+    --primary: #4A90E2;
+    --primary-dark: #357ABD;
+    --secondary: #7BA3D1;
+    --accent: #5BA3E8;
+    --success: #52C9A2;
+    --danger: #E85D75;
+    --warning: #F5A623;
+    --info: #6BB6FF;
+    --light: #F0F7FF;
+    --dark: #2C3E50;
+    --border: #D6E4F0;
+    --bg: #FFFFFF;
+    --bg-secondary: #F8FBFF;
+    --text: #2C3E50;
+    --text-secondary: #6B8CAE;
+    --shadow: 0 1px 3px rgba(74, 144, 226, 0.1);
+    --shadow-lg: 0 4px 12px rgba(74, 144, 226, 0.15);
+    --radius: 8px;
     --transition: all 0.2s ease;
 }
 

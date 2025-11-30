@@ -129,21 +129,21 @@ ob_start();
 <!-- Статистика -->
 <div class="grid grid-4 mb-20">
     <div class="stat-card">
-        <div class="stat-icon primary">👥</div>
+        <div class="stat-icon primary"></div>
         <div class="stat-content">
             <div class="stat-label">Контакты</div>
             <div class="stat-value"><?= $stats['contacts'] ?></div>
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon success">💼</div>
+        <div class="stat-icon success"></div>
         <div class="stat-content">
             <div class="stat-label">Сделки</div>
             <div class="stat-value"><?= $stats['deals'] ?></div>
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon warning">✓</div>
+        <div class="stat-icon warning"></div>
         <div class="stat-content">
             <div class="stat-label">Активные задачи</div>
             <div class="stat-value"><?= $stats['tasks'] ?></div>
@@ -210,7 +210,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">👥</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет контактов</p>
                 </div>
             <?php endif; ?>
@@ -250,7 +250,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">💼</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет сделок</p>
                 </div>
             <?php endif; ?>
@@ -289,7 +289,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">✓</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет задач</p>
                 </div>
             <?php endif; ?>
@@ -330,7 +330,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">📝</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет активностей</p>
                 </div>
             <?php endif; ?>

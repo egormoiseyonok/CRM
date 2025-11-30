@@ -146,7 +146,7 @@ ob_start();
 <div class="page-header">
     <div class="page-title">
         <h1>
-            <span class="page-title-icon">💼</span>
+            <span class="page-title-icon">◉</span>
             Сделки
         </h1>
         <div class="page-actions">
@@ -168,7 +168,7 @@ ob_start();
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon info">✓</div>
+        <div class="stat-icon info"></div>
         <div class="stat-content">
             <div class="stat-label">Квалификация</div>
             <div class="stat-value"><?= $stageStats['qualified'] ?? 0 ?></div>
@@ -291,7 +291,7 @@ ob_start();
     <div class="card">
         <div class="card-body">
             <div class="empty-state">
-                <div class="empty-state-icon">💼</div>
+                <div class="empty-state-icon"></div>
                 <h3>Сделки не найдены</h3>
                 <p>Создайте первую сделку для начала работы</p>
                 <button class="btn btn-primary mt-20" onclick="openModal('dealModal')">

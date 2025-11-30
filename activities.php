@@ -60,7 +60,7 @@ ob_start();
 <div class="page-header">
     <div class="page-title">
         <h1>
-            <span class="page-title-icon">📝</span>
+            <span class="page-title-icon">◉</span>
             Активности
         </h1>
     </div>
@@ -116,7 +116,7 @@ ob_start();
                             <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
                                 <?php if ($activity['company_name']): ?>
                                     <a href="company_view.php?id=<?= $activity['company_id'] ?>" style="font-size: 12px; color: #667eea; text-decoration: none;">
-                                        🏢 <?= e($activity['company_name']) ?>
+                                        <?= e($activity['company_name']) ?>
                                     </a>
                                 <?php endif; ?>
                                 
@@ -128,7 +128,7 @@ ob_start();
                                 
                                 <?php if ($activity['deal_title']): ?>
                                     <span style="font-size: 12px; color: #9ca3af;">
-                                        💼 <?= e($activity['deal_title']) ?>
+                                        <?= e($activity['deal_title']) ?>
                                     </span>
                                 <?php endif; ?>
                             </div>
@@ -161,7 +161,7 @@ ob_start();
     <div class="card">
         <div class="card-body">
             <div class="empty-state">
-                <div class="empty-state-icon">📝</div>
+                <div class="empty-state-icon"></div>
                 <h3>Активности не найдены</h3>
                 <p>История действий появится здесь</p>
             </div>

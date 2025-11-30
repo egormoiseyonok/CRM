@@ -74,7 +74,7 @@ $notificationCount = count($notifications);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($pageTitle) ? e($pageTitle) . ' - ' : '' ?>Simple CRM</title>
+    <title><?= isset($pageTitle) ? e($pageTitle) . ' - ' : '' ?>Portata</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/components.css">
@@ -85,8 +85,8 @@ $notificationCount = count($notifications);
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.php" class="sidebar-logo">
-                    <div class="sidebar-logo-icon">CRM</div>
-                    <span>Simple CRM</span>
+                    <div class="sidebar-logo-icon">P</div>
+                    <span>Portata</span>
                 </a>
             </div>
             
@@ -335,7 +335,7 @@ $notificationCount = count($notifications);
                         data.companies.forEach(company => {
                             html += `
                                 <a href="company_view.php?id=${company.id}" class="dropdown-item">
-                                    🏢 ${company.name}
+                                    ${company.name}
                                     ${company.industry ? '<span style="color: #9ca3af;"> • ' + company.industry + '</span>' : ''}
                                 </a>
                             `;
@@ -359,7 +359,7 @@ $notificationCount = count($notifications);
                         data.deals.forEach(deal => {
                             html += `
                                 <div class="dropdown-item">
-                                    💼 ${deal.title}
+                                    ${deal.title}
                                     <span style="color: var(--success); font-weight: 600;"> • ${formatMoney(deal.amount)}</span>
                                 </div>
                             `;

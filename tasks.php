@@ -164,7 +164,7 @@ ob_start();
 <div class="page-header">
     <div class="page-title">
         <h1>
-            <span class="page-title-icon">✓</span>
+            <span class="page-title-icon">◉</span>
             Задачи
         </h1>
         <div class="page-actions">
@@ -299,7 +299,7 @@ ob_start();
     <div class="card">
         <div class="card-body">
             <div class="empty-state">
-                <div class="empty-state-icon">✓</div>
+                <div class="empty-state-icon"></div>
                 <h3>Задачи не найдены</h3>
                 <p>Создайте первую задачу для начала работы</p>
                 <button class="btn btn-primary mt-20" onclick="openModal('taskModal')">

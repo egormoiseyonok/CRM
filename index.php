@@ -268,7 +268,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">✓</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет срочных задач</p>
                 </div>
             <?php endif; ?>
@@ -308,7 +308,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">💼</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет сделок</p>
                 </div>
             <?php endif; ?>
@@ -348,7 +348,7 @@ ob_start();
                 </div>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">📝</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет активностей</p>
                 </div>
             <?php endif; ?>

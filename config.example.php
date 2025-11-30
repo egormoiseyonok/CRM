@@ -12,7 +12,7 @@ define('DB_USER', 'your_database_user');
 define('DB_PASS', 'your_database_password');
 
 // Настройки приложения
-define('APP_NAME', 'Simple CRM');
+define('APP_NAME', 'Portata');
 define('APP_URL', 'http://localhost');
 
 // Остальные функции остаются такими же, как в config.php

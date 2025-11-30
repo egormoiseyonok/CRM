@@ -329,7 +329,7 @@ ob_start();
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">💼</div>
+                    <div class="empty-state-icon"></div>
                     <p>Нет данных о сделках</p>
                 </div>
             <?php endif; ?>
@@ -450,7 +450,7 @@ ob_start();
             </div>
         <?php else: ?>
             <div class="empty-state">
-                <div class="empty-state-icon">📊</div>
+                <div class="empty-state-icon"></div>
                 <p>Нет данных за последние месяцы</p>
             </div>
         <?php endif; ?>

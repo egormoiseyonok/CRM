@@ -9,7 +9,7 @@
 /* Боковая панель */
 .sidebar {
     width: 260px;
-    background: var(--dark);
+    background: linear-gradient(180deg, #4A90E2 0%, #6BB6FF 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -17,10 +17,10 @@
     height: 100vh;
     left: 0;
     top: 0;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 0 8px rgba(74, 144, 226, 0.2);
     z-index: 1000;
     transition: transform 0.3s ease;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-header {

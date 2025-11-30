@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход - Simple CRM</title>
+    <title>Вход - Portata</title>
     <style>
         * {
             margin: 0;
@@ -138,14 +138,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .form-control:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
         }
         
         .btn-login {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -153,12 +153,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
         }
         
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
         }
         
         .btn-login:active {
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 6px;
             margin: 6px 0;
             font-family: 'Courier New', monospace;
-            color: #667eea;
+            color: #4A90E2;
         }
         
         .register-link {
@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .register-link a {
-            color: #667eea;
+            color: #4A90E2;
             text-decoration: none;
             font-weight: 600;
         }
@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-container">
         <div class="login-header">
             <div class="login-logo">CRM</div>
-            <h1>Simple CRM</h1>
+            <h1>Portata</h1>
             <p>Система управления клиентами</p>
         </div>
         

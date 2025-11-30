@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация - Simple CRM</title>
+    <title>Регистрация - Portata</title>
     <style>
         * {
             margin: 0;
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .register-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
             padding: 40px 30px;
             text-align: center;
             color: white;
@@ -162,14 +162,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .form-control:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
         }
         
         .btn-register {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -177,12 +177,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
         }
         
         .btn-register:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
         }
         
         .btn-register:active {
@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .login-link a {
-            color: #667eea;
+            color: #4A90E2;
             text-decoration: none;
             font-weight: 600;
         }
@@ -244,9 +244,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="register-container">
         <div class="register-header">
-            <div class="register-logo">CRM</div>
+            <div class="register-logo">P</div>
             <h1>Регистрация</h1>
-            <p>Создайте учетную запись в Simple CRM</p>
+            <p>Создайте учетную запись в Portata</p>
         </div>
         
         <div class="register-body">
@@ -259,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <?php if ($success): ?>
                 <div class="alert alert-success">
-                    <span>✓</span>
+                    <span>◉</span>
                     <span><?= htmlspecialchars($success) ?></span>
                 </div>
             <?php endif; ?>
