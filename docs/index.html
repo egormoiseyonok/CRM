@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Панель управления - Simple CRM</title>
+    <title>Simple CRM - Демонстрация</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 <body>
     <div class="app-wrapper">
@@ -19,12 +20,52 @@
                 </a>
             </div>
             
-            <nav class="sidebar-nav" id="sidebarNav">
-                <!-- Навигация будет загружена через JS -->
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Главное</div>
+                    <a href="index.html" class="nav-item active">
+                        <span class="nav-icon">—</span>
+                        <span>Панель управления</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">CRM</div>
+                    <a href="#companies" class="nav-item" onclick="scrollToSection('companies')">
+                        <span class="nav-icon">—</span>
+                        <span>Компании</span>
+                    </a>
+                    <a href="#contacts" class="nav-item" onclick="scrollToSection('contacts')">
+                        <span class="nav-icon">—</span>
+                        <span>Контакты</span>
+                    </a>
+                    <a href="#deals" class="nav-item" onclick="scrollToSection('deals')">
+                        <span class="nav-icon">—</span>
+                        <span>Сделки</span>
+                    </a>
+                    <a href="#tasks" class="nav-item" onclick="scrollToSection('tasks')">
+                        <span class="nav-icon">—</span>
+                        <span>Задачи</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Аналитика</div>
+                    <a href="#analytics" class="nav-item" onclick="scrollToSection('analytics')">
+                        <span class="nav-icon">—</span>
+                        <span>Отчёты</span>
+                    </a>
+                </div>
             </nav>
             
-            <div class="sidebar-footer" id="sidebarFooter">
-                <!-- Информация о пользователе будет загружена через JS -->
+            <div class="sidebar-footer">
+                <div class="sidebar-user" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px;">
+                    <div class="sidebar-user-avatar" style="background: #667eea">DM</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name">Демо пользователь</div>
+                        <div class="sidebar-user-role">Администратор</div>
+                    </div>
+                </div>
             </div>
         </aside>
 
@@ -44,44 +85,454 @@
                 <div class="topbar-right">
                     <div class="topbar-search">
                         <span class="topbar-search-icon">⌕</span>
-                        <input type="text" placeholder="Поиск..." id="globalSearch">
-                    </div>
-                    
-                    <div class="topbar-actions">
-                        <div class="dropdown">
-                            <button class="topbar-icon-btn" title="Уведомления" onclick="toggleDropdown(this)">
-                                •
-                            </button>
-                            <div class="dropdown-menu" id="notificationsMenu">
-                                <!-- Уведомления будут загружены через JS -->
-                            </div>
-                        </div>
-                        <a href="login.html" class="topbar-icon-btn" title="Выйти">
-                            🚪
-                        </a>
+                        <input type="text" placeholder="Поиск..." disabled>
                     </div>
                 </div>
             </header>
 
             <!-- Page Content -->
             <div class="page-content">
-                <div id="flashMessage"></div>
-                
+                <!-- Статистика -->
                 <div class="page-header">
                     <div class="page-title">
                         <h1>Панель управления</h1>
                     </div>
-                    <p class="page-description" id="pageDescription">Обзор общей активности и ключевых показателей</p>
+                    <p class="page-description">Демонстрация возможностей Simple CRM</p>
                 </div>
 
-                <!-- Статистика -->
-                <div class="grid grid-4 mb-20" id="statsGrid">
-                    <!-- Статистика будет загружена через JS -->
+                <div class="grid grid-4 mb-20">
+                    <div class="stat-card">
+                        <div class="stat-icon primary"></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Активные компании</div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-change up">↑ 12% за месяц</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon success"></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Активные сделки</div>
+                            <div class="stat-value">18</div>
+                            <div class="stat-change up">↑ 8% за месяц</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon warning"></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Открытые задачи</div>
+                            <div class="stat-value">32</div>
+                            <div class="stat-change down">↓ 5% за неделю</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon info"></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Выручка</div>
+                            <div class="stat-value">2 450 000 ₽</div>
+                            <div class="stat-change up">↑ 23% за месяц</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Основной контент -->
-                <div class="grid grid-2 mb-20" id="mainContent">
-                    <!-- Контент будет загружен через JS -->
+                <!-- Воронка продаж и график -->
+                <div class="grid grid-2 mb-20">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Воронка продаж</h3>
+                            <span class="text-muted">5 200 000 ₽</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div>
+                                    <div class="d-flex justify-content-between mb-10">
+                                        <span style="font-weight: 500;">Лид</span>
+                                        <span class="text-muted">8 сделок • 1 200 000 ₽</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-10">
+                                        <span style="font-weight: 500;">Квалификация</span>
+                                        <span class="text-muted">6 сделок • 1 800 000 ₽</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-10">
+                                        <span style="font-weight: 500;">Предложение</span>
+                                        <span class="text-muted">3 сделки • 1 500 000 ₽</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-10">
+                                        <span style="font-weight: 500;">Переговоры</span>
+                                        <span class="text-muted">1 сделка • 700 000 ₽</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Продажи по месяцам</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="salesChart" style="max-height: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Компании -->
+                <div id="companies" class="section-anchor"></div>
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <span class="page-title-icon">🏢</span>
+                            Компании
+                        </h1>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" disabled>+ Добавить компанию</button>
+                        </div>
+                    </div>
+                    <p class="page-description">Управление клиентскими компаниями и организациями</p>
+                </div>
+
+                <div class="card-list">
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <div class="avatar avatar-lg" style="background: #667eea">ТК</div>
+                        </div>
+                        <div class="list-card-content">
+                            <a href="#" class="list-card-title">ТехноКорп</a>
+                            <div class="list-card-subtitle">tech@technocorp.ru • +7 (495) 123-45-67</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-success">Активна</span>
+                                <span style="color: #6b7280;">IT • 5 контактов • 3 сделки</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Просмотр</a>
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <div class="avatar avatar-lg" style="background: #764ba2">ИС</div>
+                        </div>
+                        <div class="list-card-content">
+                            <a href="#" class="list-card-title">Инновационные Системы</a>
+                            <div class="list-card-subtitle">info@innovsys.ru • +7 (495) 234-56-78</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-success">Активна</span>
+                                <span style="color: #6b7280;">Разработка ПО • 3 контакта • 2 сделки</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Просмотр</a>
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <div class="avatar avatar-lg" style="background: #f093fb">ДМ</div>
+                        </div>
+                        <div class="list-card-content">
+                            <a href="#" class="list-card-title">Дигитал Маркетинг</a>
+                            <div class="list-card-subtitle">hello@digitalmark.ru • +7 (495) 345-67-89</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-success">Активна</span>
+                                <span style="color: #6b7280;">Маркетинг • 7 контактов • 4 сделки</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Просмотр</a>
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Контакты -->
+                <div id="contacts" class="section-anchor"></div>
+                <div class="page-header" style="margin-top: 60px;">
+                    <div class="page-title">
+                        <h1>
+                            <span class="page-title-icon">👥</span>
+                            Контакты
+                        </h1>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" disabled>+ Добавить контакт</button>
+                        </div>
+                    </div>
+                    <p class="page-description">База контактных лиц</p>
+                </div>
+
+                <div class="card-list">
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <div class="avatar avatar-lg" style="background: #4facfe">ИП</div>
+                        </div>
+                        <div class="list-card-content">
+                            <div class="list-card-title">Иван Петров</div>
+                            <div class="list-card-subtitle">Директор по развитию • ТехноКорп</div>
+                            <div class="list-card-meta">
+                                <span style="color: #6b7280;">ivan.petrov@technocorp.ru • +7 (495) 123-45-67</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <div class="avatar avatar-lg" style="background: #43e97b">МС</div>
+                        </div>
+                        <div class="list-card-content">
+                            <div class="list-card-title">Мария Сидорова</div>
+                            <div class="list-card-subtitle">Менеджер проектов • Инновационные Системы</div>
+                            <div class="list-card-meta">
+                                <span style="color: #6b7280;">maria.sidorova@innovsys.ru • +7 (495) 234-56-78</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Сделки -->
+                <div id="deals" class="section-anchor"></div>
+                <div class="page-header" style="margin-top: 60px;">
+                    <div class="page-title">
+                        <h1>
+                            <span class="page-title-icon">💼</span>
+                            Сделки
+                        </h1>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" disabled>+ Добавить сделку</button>
+                        </div>
+                    </div>
+                    <p class="page-description">Воронка продаж и управление сделками</p>
+                </div>
+
+                <div class="card-list">
+                    <div class="list-card">
+                        <div class="list-card-content">
+                            <div class="list-card-title">Внедрение CRM системы</div>
+                            <div class="list-card-subtitle">ТехноКорп • Иван Петров</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-primary">Предложение</span>
+                                <span style="color: var(--success); font-weight: 600;">1 500 000 ₽</span>
+                                <span style="color: #6b7280;">Вероятность: 60%</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <span style="font-size: 12px; color: #9ca3af;">Ожидается: 15.12.2024</span>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-content">
+                            <div class="list-card-title">Разработка мобильного приложения</div>
+                            <div class="list-card-subtitle">Инновационные Системы • Мария Сидорова</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-warning">Переговоры</span>
+                                <span style="color: var(--success); font-weight: 600;">700 000 ₽</span>
+                                <span style="color: #6b7280;">Вероятность: 80%</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <span style="font-size: 12px; color: #9ca3af;">Ожидается: 20.12.2024</span>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-content">
+                            <div class="list-card-title">Маркетинговая кампания</div>
+                            <div class="list-card-subtitle">Дигитал Маркетинг</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-info">Квалификация</span>
+                                <span style="color: var(--success); font-weight: 600;">450 000 ₽</span>
+                                <span style="color: #6b7280;">Вероятность: 40%</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <span style="font-size: 12px; color: #9ca3af;">Ожидается: 10.01.2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Задачи -->
+                <div id="tasks" class="section-anchor"></div>
+                <div class="page-header" style="margin-top: 60px;">
+                    <div class="page-title">
+                        <h1>
+                            <span class="page-title-icon">✓</span>
+                            Задачи
+                        </h1>
+                        <div class="page-actions">
+                            <button class="btn btn-primary" disabled>+ Добавить задачу</button>
+                        </div>
+                    </div>
+                    <p class="page-description">Управление задачами и напоминаниями</p>
+                </div>
+
+                <div class="card-list">
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <input type="checkbox" style="width: 24px; height: 24px; cursor: pointer;" disabled>
+                        </div>
+                        <div class="list-card-content">
+                            <div class="list-card-title">Подготовить коммерческое предложение</div>
+                            <div class="list-card-subtitle">ТехноКорп • Внедрение CRM системы</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-warning">В работе</span>
+                                <span class="badge badge-danger">Высокий</span>
+                                <span style="color: #6b7280;">📅 15.12.2024</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-card-avatar">
+                            <input type="checkbox" style="width: 24px; height: 24px; cursor: pointer;" disabled>
+                        </div>
+                        <div class="list-card-content">
+                            <div class="list-card-title">Встреча с клиентом</div>
+                            <div class="list-card-subtitle">Инновационные Системы • Разработка мобильного приложения</div>
+                            <div class="list-card-meta">
+                                <span class="badge badge-info">В работе</span>
+                                <span class="badge badge-warning">Средний</span>
+                                <span style="color: #6b7280;">📅 20.12.2024</span>
+                            </div>
+                        </div>
+                        <div class="list-card-actions">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" onclick="toggleDropdown(this)">⋮</button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" disabled>Редактировать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Аналитика -->
+                <div id="analytics" class="section-anchor"></div>
+                <div class="page-header" style="margin-top: 60px;">
+                    <div class="page-title">
+                        <h1>
+                            <span class="page-title-icon">📊</span>
+                            Аналитика и отчёты
+                        </h1>
+                    </div>
+                    <p class="page-description">Визуализация данных и статистика</p>
+                </div>
+
+                <div class="grid grid-2 mb-20">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Распределение сделок по этапам</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="stagesChart" style="max-height: 300px;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Задачи по приоритетам</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="tasksChart" style="max-height: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Информация о системе -->
+                <div class="card mb-20" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <div class="card-body" style="padding: 40px;">
+                        <h2 style="color: white; margin-bottom: 16px; font-size: 28px;">🚀 Simple CRM</h2>
+                        <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; font-size: 16px;">
+                            Простая, но мощная CRM-система для управления клиентами, сделками и задачами.
+                        </p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px;">
+                            <div>
+                                <h3 style="color: white; font-size: 20px; margin-bottom: 8px;">🏢 Компании</h3>
+                                <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Управление клиентскими компаниями</p>
+                            </div>
+                            <div>
+                                <h3 style="color: white; font-size: 20px; margin-bottom: 8px;">💼 Сделки</h3>
+                                <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Воронка продаж и прогнозирование</p>
+                            </div>
+                            <div>
+                                <h3 style="color: white; font-size: 20px; margin-bottom: 8px;">✓ Задачи</h3>
+                                <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Планирование и контроль задач</p>
+                            </div>
+                            <div>
+                                <h3 style="color: white; font-size: 20px; margin-bottom: 8px;">📊 Аналитика</h3>
+                                <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Отчёты и визуализация данных</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                            <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px;">
+                                <strong>Технологии:</strong> PHP • PostgreSQL • Vanilla JavaScript • CSS3
+                            </p>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 13px; margin-top: 8px;">
+                                Для полной функциональности запустите приложение локально с PHP сервером
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -89,27 +540,149 @@
 
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
-    
-    <!-- Search Results Modal -->
-    <div class="modal-overlay" id="searchModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Результаты поиска</h3>
-                <button class="modal-close" onclick="closeSearchModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="searchResults">
-                <div class="loading">
-                    <div class="spinner"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/pages/dashboard.js"></script>
-    <script src="js/layout.js"></script>
+    <style>
+        .section-anchor {
+            scroll-margin-top: 80px;
+        }
+    </style>
+
+    <script>
+        // График продаж по месяцам
+        const salesCtx = document.getElementById('salesChart');
+        if (salesCtx) {
+            new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                    datasets: [{
+                        label: 'Продажи (₽)',
+                        data: [1200000, 1500000, 1800000, 1600000, 2000000, 2200000, 2100000, 2400000, 2300000, 2500000, 2450000, 2600000],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return (value / 1000000).toFixed(1) + 'М';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // График распределения сделок по этапам
+        const stagesCtx = document.getElementById('stagesChart');
+        if (stagesCtx) {
+            new Chart(stagesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Лид', 'Квалификация', 'Предложение', 'Переговоры'],
+                    datasets: [{
+                        data: [8, 6, 3, 1],
+                        backgroundColor: [
+                            '#6b7280',
+                            '#3b82f6',
+                            '#667eea',
+                            '#f59e0b'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // График задач по приоритетам
+        const tasksCtx = document.getElementById('tasksChart');
+        if (tasksCtx) {
+            new Chart(tasksCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Низкий', 'Средний', 'Высокий'],
+                    datasets: [{
+                        label: 'Количество задач',
+                        data: [12, 15, 5],
+                        backgroundColor: [
+                            '#6b7280',
+                            '#f59e0b',
+                            '#ef4444'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 5
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            if (sidebar) sidebar.classList.toggle('show');
+            if (overlay) overlay.classList.toggle('show');
+        }
+
+        function toggleDropdown(btn) {
+            const dropdown = btn.closest('.dropdown');
+            const isOpen = dropdown.classList.contains('show');
+            
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+            
+            if (!isOpen && dropdown) {
+                dropdown.classList.add('show');
+            }
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Закрытие dropdown при клике вне
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+            }
+        });
+    </script>
 </body>
 </html>
-
