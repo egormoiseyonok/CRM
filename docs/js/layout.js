@@ -4,17 +4,23 @@ const Layout = {
     currentUser: null,
     
     async init() {
-        if (!Config.isBackendAvailable()) {
-            return;
-        }
+        // Всегда показываем навигацию, даже без бэкенда
+        this.renderSidebar();
+        this.setupSearch();
         
-        try {
-            this.currentUser = await api.getCurrentUser();
-            this.renderSidebar();
-            this.renderUserInfo();
-            this.setupSearch();
-        } catch (error) {
-            console.error('Layout init failed:', error);
+        // Пытаемся загрузить данные пользователя, если бэкенд доступен
+        if (Config.isBackendAvailable()) {
+            try {
+                this.currentUser = await api.getCurrentUser();
+                this.renderUserInfo();
+            } catch (error) {
+                console.error('Layout init failed:', error);
+                // Показываем дефолтную информацию пользователя
+                this.renderDefaultUserInfo();
+            }
+        } else {
+            // Показываем дефолтную информацию пользователя
+            this.renderDefaultUserInfo();
         }
     },
     
@@ -63,18 +69,14 @@ const Layout = {
                     <span class="nav-icon">—</span>
                     <span>Календарь</span>
                 </a>
-                ${this.currentUser?.role === 'admin' || this.currentUser?.role === 'manager' ? `
                 <a href="reports.html" class="nav-item ${currentPage === 'reports.html' ? 'active' : ''}">
                     <span class="nav-icon">—</span>
                     <span>Отчёты и экспорт</span>
                 </a>
-                ` : ''}
-                ${this.currentUser?.role === 'admin' ? `
                 <a href="users.html" class="nav-item ${currentPage === 'users.html' ? 'active' : ''}">
                     <span class="nav-icon">—</span>
                     <span>Пользователи</span>
                 </a>
-                ` : ''}
             </div>
             
             <div class="nav-section">
@@ -111,6 +113,23 @@ const Layout = {
         `;
     },
     
+    renderDefaultUserInfo() {
+        const footer = document.getElementById('sidebarFooter');
+        if (!footer) return;
+        
+        footer.innerHTML = `
+            <a href="profile.html" class="sidebar-user" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.05)'" onmouseout="this.style.background='transparent'">
+                <div class="sidebar-user-avatar" style="background: #667eea">
+                    GU
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">Гость</div>
+                    <div class="sidebar-user-role">Пользователь</div>
+                </div>
+            </a>
+        `;
+    },
+    
     getAvatarColor(string) {
         const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#fee140', '#30cfd0'];
         let hash = 0;
@@ -142,16 +161,24 @@ const Layout = {
     },
     
     async performSearch(query) {
-        if (!Config.isBackendAvailable()) {
-            App.showNotification('Поиск недоступен без локального бэкенда', 'warning');
-            return;
-        }
-        
         const modal = document.getElementById('searchModal');
         const results = document.getElementById('searchResults');
         
         if (modal) modal.classList.add('show');
         if (results) results.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        
+        if (!Config.isBackendAvailable()) {
+            // Бэкенд недоступен - показываем пустой результат
+            if (results) {
+                results.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>Поиск недоступен без локального бэкенда</p>
+                    </div>
+                `;
+            }
+            return;
+        }
         
         try {
             const data = await api.search(query);
@@ -208,14 +235,16 @@ const Layout = {
             
             results.innerHTML = html;
         } catch (error) {
+            // Молча обрабатываем ошибку, показываем пустой результат
             if (results) {
                 results.innerHTML = `
-                    <div class="alert alert-danger">
-                        Ошибка поиска. Попробуйте ещё раз.
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>Ошибка поиска</p>
                     </div>
                 `;
             }
-            App.handleApiError(error);
+            console.error('Search error:', error);
         }
     }
 };

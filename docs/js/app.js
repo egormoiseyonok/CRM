@@ -2,11 +2,11 @@
 // Утилиты и вспомогательные функции
 
 const App = {
-    // Проверка авторизации
+    // Проверка авторизации (не блокирует интерфейс)
     async checkAuth() {
         if (!Config.isBackendAvailable()) {
-            this.showBackendUnavailable();
-            return false;
+            // Бэкенд недоступен, но интерфейс показываем
+            return null;
         }
         
         try {
@@ -16,40 +16,11 @@ const App = {
             }
         } catch (error) {
             console.error('Auth check failed:', error);
-            window.location.href = 'login.html';
-            return false;
+            // Не перенаправляем на login, просто возвращаем null
+            return null;
         }
         
-        return false;
-    },
-    
-    // Показать сообщение о недоступности бэкенда
-    showBackendUnavailable() {
-        const message = document.createElement('div');
-        message.className = 'backend-unavailable';
-        message.innerHTML = `
-            <div style="max-width: 600px; margin: 50px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <h2 style="color: #667eea; margin-bottom: 16px;">🔧 Бэкенд недоступен</h2>
-                <p style="color: #6b7280; margin-bottom: 20px;">
-                    Вы просматриваете статическую версию приложения на GitHub Pages. 
-                    Для полной функциональности (вход, работа с данными) необходимо запустить приложение локально.
-                </p>
-                <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                    <h3 style="font-size: 16px; margin-bottom: 12px; color: #1f2937;">Как запустить локально:</h3>
-                    <ol style="margin-left: 20px; color: #6b7280; line-height: 1.8;">
-                        <li>Установите XAMPP или другой PHP сервер</li>
-                        <li>Склонируйте репозиторий в папку <code style="background: white; padding: 2px 6px; border-radius: 4px;">htdocs</code></li>
-                        <li>Настройте базу данных PostgreSQL</li>
-                        <li>Откройте <code style="background: white; padding: 2px 6px; border-radius: 4px;">http://localhost/CRM</code></li>
-                    </ol>
-                </div>
-                <p style="color: #9ca3af; font-size: 14px;">
-                    Статическая версия показывает только интерфейс без функциональности.
-                </p>
-            </div>
-        `;
-        document.body.innerHTML = '';
-        document.body.appendChild(message);
+        return null;
     },
     
     // Форматирование даты
@@ -169,20 +140,22 @@ const App = {
         }, 5000);
     },
     
-    // Обработка ошибок API
+    // Обработка ошибок API (не блокирует интерфейс)
     handleApiError(error) {
         console.error('API Error:', error);
-        if (error.message.includes('Backend API is not available')) {
-            this.showBackendUnavailable();
-        } else {
-            this.showNotification('Ошибка: ' + error.message, 'danger');
+        // Просто логируем ошибку, не показываем сообщение пользователю
+        // Интерфейс продолжает работать
+        if (!error.message.includes('Backend API is not available')) {
+            // Показываем уведомление только для других ошибок
+            this.showNotification('Ошибка подключения к серверу', 'warning');
         }
     }
 };
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', async () => {
-    // Проверяем, не на странице логина
+    // Проверяем авторизацию, но не блокируем интерфейс
+    // Интерфейс всегда показывается, даже если бэкенд недоступен
     if (!window.location.pathname.includes('login.html') && 
         !window.location.pathname.includes('register.html')) {
         await App.checkAuth();
