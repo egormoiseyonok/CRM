@@ -2,19 +2,19 @@
 
 ## Быстрый старт
 
-### Вариант 1: Деплой из папки frontend/
+### Вариант 1: Деплой из папки docs/ (рекомендуется)
 
 1. **Подготовка репозитория:**
    ```bash
-   # Если еще не создали папку frontend, создайте её
-   # Убедитесь, что все файлы фронтенда находятся в frontend/
+   # Папка docs/ уже создана и содержит весь фронтенд
+   # GitHub Pages автоматически поддерживает папку docs/
    ```
 
 2. **Настройка GitHub Pages:**
    - Перейдите в Settings → Pages вашего репозитория
    - В разделе "Source" выберите "Deploy from a branch"
    - Выберите ветку (обычно `main` или `master`)
-   - В поле "Folder" укажите `/frontend` (или `/docs` если переименуете)
+   - В поле "Folder" выберите `/docs`
    - Нажмите Save
 
 3. **Альтернатива через GitHub Actions:**
@@ -26,7 +26,7 @@
      push:
        branches: [ main ]
        paths:
-         - 'frontend/**'
+         - 'docs/**'
    
    jobs:
      deploy:
@@ -37,7 +37,7 @@
            uses: peaceiris/actions-gh-pages@v3
            with:
              github_token: ${{ secrets.GITHUB_TOKEN }}
-             publish_dir: ./frontend
+             publish_dir: ./docs
    ```
 
 ### Вариант 2: Деплой в отдельную ветку gh-pages
@@ -46,10 +46,10 @@
    ```bash
    git checkout -b gh-pages
    git rm -rf .
-   git checkout main -- frontend/
-   # Переместите содержимое frontend/ в корень
-   git mv frontend/* .
-   git mv frontend/.* . 2>/dev/null || true
+   git checkout main -- docs/
+   # Переместите содержимое docs/ в корень
+   git mv docs/* .
+   git mv docs/.* . 2>/dev/null || true
    git commit -m "Deploy frontend to gh-pages"
    git push origin gh-pages
    ```
@@ -102,12 +102,12 @@
 Для разработки с полной функциональностью:
 
 1. Запустите PHP сервер (XAMPP, PHP built-in server и т.д.)
-2. Откройте `http://localhost/CRM/frontend/`
+2. Откройте `http://localhost/CRM/docs/`
 3. Фронтенд автоматически подключится к PHP API на `http://localhost/CRM/api/`
 
 ## Обновление деплоя
 
-После изменений в `frontend/`:
+После изменений в `docs/`:
 
 1. Закоммитьте изменения
 2. Запушьте в репозиторий

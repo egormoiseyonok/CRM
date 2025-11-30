@@ -3,7 +3,7 @@
 ## Что изменилось?
 
 Проект теперь разделен на:
-- **Фронтенд** (`frontend/`) - статические HTML/CSS/JS файлы
+- **Фронтенд** (`docs/`) - статические HTML/CSS/JS файлы
 - **Бэкенд** (`api/`) - PHP API endpoints
 
 ## Как использовать
@@ -13,7 +13,7 @@
 ```bash
 # 1. Убедитесь, что XAMPP запущен
 # 2. Откройте браузер
-http://localhost/CRM/frontend/
+http://localhost/CRM/docs/
 ```
 
 Фронтенд автоматически подключится к PHP API на `http://localhost/CRM/api/`
@@ -21,7 +21,7 @@ http://localhost/CRM/frontend/
 ### 2. Деплой на GitHub Pages (только интерфейс)
 
 1. Перейдите в Settings → Pages вашего репозитория
-2. Выберите папку `frontend/` как источник
+2. Выберите папку `docs/` как источник
 3. Сохраните
 
 Через несколько минут фронтенд будет доступен на GitHub Pages.
@@ -31,7 +31,7 @@ http://localhost/CRM/frontend/
 ## Структура
 
 ```
-frontend/          ← Статический фронтенд (для GitHub Pages)
+docs/              ← Статический фронтенд (для GitHub Pages)
 ├── index.html
 ├── login.html
 ├── css/
@@ -59,7 +59,7 @@ api/               ← PHP API (работает только локально)
 
 ## Автоматическое определение
 
-Файл `frontend/js/config.js` автоматически определяет окружение:
+Файл `docs/js/config.js` автоматически определяет окружение:
 
 - На GitHub Pages → показывает сообщение о необходимости локального запуска
 - Локально → подключается к PHP API
@@ -68,5 +68,5 @@ api/               ← PHP API (работает только локально)
 
 - Подробная инструкция по деплою: `DEPLOYMENT_FRONTEND.md`
 - Технические детали: `README_MICROSERVICES.md`
-- Документация фронтенда: `frontend/README.md`
+- Документация фронтенда: `docs/README.md`
 

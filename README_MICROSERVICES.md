@@ -9,7 +9,7 @@
 
 ```
 CRM/
-├── frontend/              # Статический фронтенд (для GitHub Pages)
+├── docs/                  # Статический фронтенд (для GitHub Pages)
 │   ├── index.html
 │   ├── login.html
 │   ├── css/              # Стили
@@ -26,7 +26,7 @@ CRM/
 │   ├── contact.php
 │   ├── user.php
 │   └── meeting.php
-├── assets/                # CSS файлы (используются в frontend/)
+├── assets/                # CSS файлы (используются в docs/)
 ├── config.php             # PHP конфигурация
 ├── *.php                  # PHP страницы (старая версия, для совместимости)
 └── .htaccess              # Apache конфигурация
@@ -58,13 +58,13 @@ CRM/
 1. Установите XAMPP или другой PHP сервер
 2. Склонируйте репозиторий в `htdocs/CRM`
 3. Настройте PostgreSQL базу данных в `config.php`
-4. Откройте `http://localhost/CRM/frontend/`
+4. Откройте `http://localhost/CRM/docs/`
 5. Фронтенд автоматически подключится к PHP API
 
 ### Деплой на GitHub Pages
 
 1. Перейдите в Settings → Pages вашего репозитория
-2. Выберите источник: папка `frontend/` или ветка `gh-pages`
+2. Выберите источник: папка `docs/` или ветка `gh-pages`
 3. Сохраните настройки
 4. Через несколько минут фронтенд будет доступен на `https://username.github.io/repo/`
 
@@ -74,7 +74,7 @@ CRM/
 
 ### Автоопределение окружения
 
-Файл `frontend/js/config.js` автоматически определяет окружение:
+Файл `docs/js/config.js` автоматически определяет окружение:
 
 ```javascript
 // Если на GitHub Pages
@@ -88,7 +88,7 @@ return window.location.origin; // http://localhost
 
 ### API клиент
 
-Файл `frontend/js/api.js` предоставляет класс `ApiClient`:
+Файл `docs/js/api.js` предоставляет класс `ApiClient`:
 
 ```javascript
 const api = new ApiClient();
@@ -114,7 +114,7 @@ require_once __DIR__ . '/cors.php';
 Старые PHP страницы (`index.php`, `companies.php` и т.д.) остаются для обратной совместимости.
 
 Новая архитектура:
-- Фронтенд: `frontend/*.html` + `frontend/js/*.js`
+- Фронтенд: `docs/*.html` + `docs/js/*.js`
 - Бэкенд: `api/*.php`
 
 Вы можете постепенно мигрировать, используя оба варианта параллельно.

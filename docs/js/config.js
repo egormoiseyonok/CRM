@@ -28,6 +28,14 @@ const Config = {
         if (!baseUrl) {
             throw new Error('Backend API is not available. Please run the application locally.');
         }
+        // Если мы в папке docs/, нужно вернуться на уровень выше для API
+        // Определяем, находимся ли мы в подпапке
+        const pathname = window.location.pathname;
+        if (pathname.includes('/docs/')) {
+            // Убираем /docs/ из пути и добавляем /api/
+            const basePath = pathname.split('/docs/')[0];
+            return `${baseUrl}${basePath}/api/${path}`;
+        }
         return `${baseUrl}/api/${path}`;
     }
 };
